@@ -47,7 +47,7 @@ export const CreateRecipe = () => {
         }
       );
 
-      alert("Recipe Created Successfully! 🎉");
+      alert("Recipe Created");
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -55,129 +55,62 @@ export const CreateRecipe = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh", background: "#f8f9fa" }}>
-      <div className="card shadow-lg p-4" style={{ width: "500px", borderRadius: "12px", background: "white" }}>
-        <h2 className="text-center mb-4" style={{ fontWeight: "bold", color: "#333" }}>
-          🍽️ Create a Delicious Recipe
-        </h2>
-        <form onSubmit={handleSubmit}>
-          {/* Recipe Name */}
-          <div className="form-group mb-3">
-            <label htmlFor="name" className="fw-bold">Recipe Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={recipe.name}
-              onChange={handleChange}
-              className="form-control"
-              placeholder="Enter recipe name"
-              required
-            />
-          </div>
-
-          {/* Description */}
-          <div className="form-group mb-3">
-            <label htmlFor="description" className="fw-bold">Description</label>
-            <textarea
-              id="description"
-              name="description"
-              value={recipe.description}
-              onChange={handleChange}
-              className="form-control"
-              rows="3"
-              placeholder="Briefly describe your recipe"
-              required
-            ></textarea>
-          </div>
-
-          {/* Ingredients */}
-          <div className="form-group mb-3">
-            <label htmlFor="ingredients" className="fw-bold">Ingredients</label>
-            {recipe.ingredients.map((ingredient, index) => (
-              <div key={index} className="d-flex align-items-center mb-2">
-                <input
-                  type="text"
-                  name="ingredients"
-                  value={ingredient}
-                  onChange={(event) => handleIngredientChange(event, index)}
-                  className="form-control me-2"
-                  placeholder={`Ingredient ${index + 1}`}
-                  required
-                />
-                {index > 0 && (
-                  <button type="button" onClick={() => setRecipe({ ...recipe, ingredients: recipe.ingredients.filter((_, i) => i !== index) })} className="btn btn-outline-danger btn-sm">
-                    ❌
-                  </button>
-                )}
-              </div>
-            ))}
-            <button type="button" onClick={handleAddIngredient} className="btn btn-outline-primary btn-sm mt-2">
-              ➕ Add Ingredient
-            </button>
-          </div>
-
-          {/* Instructions */}
-          <div className="form-group mb-3">
-            <label htmlFor="instructions" className="fw-bold">Instructions</label>
-            <textarea
-              id="instructions"
-              name="instructions"
-              value={recipe.instructions}
-              onChange={handleChange}
-              className="form-control"
-              rows="5"
-              placeholder="Step-by-step instructions"
-              required
-            ></textarea>
-          </div>
-
-          {/* Image URL */}
-          <div className="form-group mb-3">
-            <label htmlFor="imageUrl" className="fw-bold">Recipe Image URL</label>
-            <input
-              type="text"
-              id="imageUrl"
-              name="imageUrl"
-              value={recipe.imageUrl}
-              onChange={handleChange}
-              className="form-control"
-              placeholder="Paste image URL here"
-            />
-            {recipe.imageUrl && (
-              <div className="text-center mt-3">
-                <img
-                  src={recipe.imageUrl}
-                  alt="Preview"
-                  className="img-fluid rounded shadow"
-                  style={{ maxHeight: "200px" }}
-                  onError={() => setRecipe({ ...recipe, imageUrl: "" })} // Remove URL if invalid
-                />
-              </div>
-            )}
-          </div>
-
-          {/* Cooking Time */}
-          <div className="form-group mb-3">
-            <label htmlFor="cookingTime" className="fw-bold">Cooking Time (minutes)</label>
-            <input
-              type="number"
-              id="cookingTime"
-              name="cookingTime"
-              value={recipe.cookingTime}
-              onChange={handleChange}
-              className="form-control"
-              placeholder="Cooking time in minutes"
-              required
-            />
-          </div>
-
-          {/* Submit Button */}
-          <button type="submit" className="btn btn-success w-100 mt-3" style={{ transition: "0.3s" }}>
-            🚀 Create Recipe
-          </button>
-        </form>
-      </div>
+    <div className="create-recipe">
+      <h2>Create Recipe</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={recipe.name}
+          onChange={handleChange}
+        />
+        <label htmlFor="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          value={recipe.description}
+          onChange={handleChange}
+        ></textarea>
+        <label htmlFor="ingredients">Ingredients</label>
+        {recipe.ingredients.map((ingredient, index) => (
+          <input
+            key={index}
+            type="text"
+            name="ingredients"
+            value={ingredient}
+            onChange={(event) => handleIngredientChange(event, index)}
+          />
+        ))}
+        <button type="button" onClick={handleAddIngredient}>
+          Add Ingredient
+        </button>
+        <label htmlFor="instructions">Instructions</label>
+        <textarea
+          id="instructions"
+          name="instructions"
+          value={recipe.instructions}
+          onChange={handleChange}
+        ></textarea>
+        <label htmlFor="imageUrl">Image URL</label>
+        <input
+          type="text"
+          id="imageUrl"
+          name="imageUrl"
+          value={recipe.imageUrl}
+          onChange={handleChange}
+        />
+        <label htmlFor="cookingTime">Cooking Time (minutes)</label>
+        <input
+          type="number"
+          id="cookingTime"
+          name="cookingTime"
+          value={recipe.cookingTime}
+          onChange={handleChange}
+        />
+        <button type="submit">Create Recipe</button>
+      </form>
     </div>
   );
-};
+}; 
