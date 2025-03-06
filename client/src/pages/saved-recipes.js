@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useGetUserID } from "../hooks/useGetUserID";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 
 export const SavedRecipes = () => {
   const [savedRecipes, setSavedRecipes] = useState([]);
