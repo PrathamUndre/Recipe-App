@@ -170,3 +170,38 @@ button{
 .btn-danger:hover {
   background: #ff0000;
 }
+/* Recipe Card Styling */
+.recipe-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Styling */
+.recipe-card img {
+  height: 230px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.recipe-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Buttons */
+.btn-success {
+  border-radius: 25px;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-success:hover {
+  background: #28a745;
+  transform: scale(1.05);
+}
+
