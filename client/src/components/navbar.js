@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 
 export const Navbar = () => {
   const [cookies, setCookies] = useCookies(["access_token"]);
