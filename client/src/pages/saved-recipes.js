@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useGetUserID } from "../hooks/useGetUserID";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export const SavedRecipes = () => {
   const [savedRecipes, setSavedRecipes] = useState([]);
@@ -24,51 +25,51 @@ export const SavedRecipes = () => {
 
   return (
     <div className="container my-5">
-      <h1 className="text-center mb-4 text-primary">Saved Recipes</h1>
-      <div className="row">
-        {savedRecipes.map((recipe) => (
-          <div className="col-md-4 mb-4" key={recipe._id}>
-            <div className="card shadow-lg border-light rounded-lg">
-              <img
-                src={recipe.imageUrl}
-                alt={recipe.name}
-                className="card-img-top"
-                style={{
-                  height: "250px",
-                  objectFit: "cover",
-                  transition: "transform 0.3s ease",
-                }}
-                onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-                onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
-              />
-              <div className="card-body">
-                <h5 className="card-title text-primary">{recipe.name}</h5>
-                <p className="card-text">{recipe.description}</p>
-                <p className="text-muted">Cooking Time: {recipe.cookingTime} minutes</p>
+      <h1 className="text-center mb-4 text-success fw-bold">
+        🍽️ Your Saved Recipes
+      </h1>
 
-                {/* Ingredients */}
-                <h6 className="mt-2">Ingredients:</h6>
-                <ul className="list-group list-group-flush mb-3">
-                  {recipe.ingredients.map((ingredient, index) => (
-                    <li key={index} className="list-group-item">{ingredient}</li>
-                  ))}
-                </ul>
+      {savedRecipes.length === 0 ? (
+        <p className="text-center text-muted">No saved recipes yet. Start exploring!</p>
+      ) : (
+        <div className="row">
+          {savedRecipes.map((recipe) => (
+            <div className="col-md-4 mb-4" key={recipe._id}>
+              <div className="card recipe-card shadow border-0 rounded-4">
+                <img
+                  src={recipe.imageUrl}
+                  alt={recipe.name}
+                  className="card-img-top"
+                />
+                <div className="card-body">
+                  <h5 className="card-title text-success fw-bold">{recipe.name}</h5>
+                  <p className="card-text text-muted">{recipe.description}</p>
+                  <p className="text-muted">
+                    ⏳ Cooking Time: <strong>{recipe.cookingTime} mins</strong>
+                  </p>
 
-                {/* Instructions */}
-                <h6 className="mt-2">Instructions:</h6>
-                <p>{recipe.instructions}</p>
+                  {/* Ingredients */}
+                  <h6 className="mt-3 fw-bold">🥦 Ingredients:</h6>
+                  <ul className="list-group list-group-flush mb-3">
+                    {recipe.ingredients.slice(0, 3).map((ingredient, index) => (
+                      <li key={index} className="list-group-item small">
+                        {ingredient}
+                      </li>
+                    ))}
+                  </ul>
 
-                <Link
-                  to={`/recipe/${recipe._id}`}
-                  className="btn btn-primary w-100 mt-2"
-                >
-                  View Full Recipe
-                </Link>
+                  <Link
+                    to={`/recipe/${recipe._id}`}
+                    className="btn btn-success w-100 fw-bold"
+                  >
+                    View Full Recipe
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
