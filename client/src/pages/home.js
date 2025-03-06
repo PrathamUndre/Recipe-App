@@ -35,10 +35,10 @@ export const Home = () => {
 
   const toggleSaveRecipe = async (recipeID) => {
     try {
-      const response = await axios.put(
-        "https://recipe-app-dra0.onrender.com/recipes/toggleSave",
-        { recipeID, userID }
-      );
+      const response = await axios.put("https://recipe-app-dra0.onrender.com/recipes", {
+        recipeID,
+        userID,
+      });
       setSavedRecipes(response.data.savedRecipes);
     } catch (err) {
       console.log(err);
@@ -49,30 +49,31 @@ export const Home = () => {
 
   return (
     <div className="container py-5">
-      <h1 className="text-center mb-4 text-primary">Explore Our Recipes</h1>
-      <div className="row row-cols-1 row-cols-md-3 g-4">
+      <h1 className="text-center mb-4 text-primary">🍽️ Explore Our Recipes</h1>
+      
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {recipes.map((recipe) => (
           <div key={recipe._id} className="col">
-            <div className="card shadow-lg border-0 rounded">
+            <div className="card shadow-sm border-0 rounded-4 overflow-hidden">
               <img
                 src={recipe.imageUrl}
                 alt={recipe.name}
                 className="card-img-top"
-                style={{ height: "250px", objectFit: "cover" }}
+                style={{ height: "220px", objectFit: "cover" }}
               />
-              <div className="card-body d-flex flex-column">
+              <div className="card-body">
                 <h5 className="card-title text-primary">{recipe.name}</h5>
-                <p className="card-text text-muted">{recipe.instructions.substring(0, 80)}...</p>
-                <div className="d-flex justify-content-between align-items-center mt-auto">
-                  <p className="text-muted mb-0">
-                    <i className="bi bi-clock"></i> {recipe.cookingTime} min
-                  </p>
+                <p className="card-text text-muted">{recipe.instructions.substring(0, 100)}...</p>
+                <p className="small text-secondary">⏳ {recipe.cookingTime} minutes</p>
+
+                <div className="d-flex justify-content-between align-items-center">
                   <button
-                    className={`btn ${isRecipeSaved(recipe._id) ? "btn-danger" : "btn-outline-danger"}`}
+                    className={`btn ${isRecipeSaved(recipe._id) ? 'btn-danger' : 'btn-outline-primary'} rounded-pill`}
                     onClick={() => toggleSaveRecipe(recipe._id)}
                   >
-                    <i className={`bi ${isRecipeSaved(recipe._id) ? "bi-heart-fill" : "bi-heart"}`}></i>
+                    {isRecipeSaved(recipe._id) ? "❌ Unsave" : "❤️ Save"}
                   </button>
+                  <a href={`/recipe/${recipe._id}`} className="btn btn-primary rounded-pill">View</a>
                 </div>
               </div>
             </div>
@@ -82,3 +83,4 @@ export const Home = () => {
     </div>
   );
 };
+
