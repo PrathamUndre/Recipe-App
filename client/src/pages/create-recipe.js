@@ -16,6 +16,7 @@ export const CreateRecipe = () => {
     cookingTime: 0,
     userOwner: userID,
   });
+  const [previewImage, setPreviewImage] = useState(null);
 
   const navigate = useNavigate();
 
@@ -32,14 +33,24 @@ export const CreateRecipe = () => {
   };
 
   const handleAddIngredient = () => {
-    const ingredients = [...recipe.ingredients, ""];
-    setRecipe({ ...recipe, ingredients });
+    if (recipe.ingredients.length < 20) {
+      setRecipe({ ...recipe, ingredients: [...recipe.ingredients, ""] });
+    } else {
+      alert("You can add up to 20 ingredients only.");
+    }
   };
 
   const handleRemoveIngredient = (index) => {
-    const ingredients = [...recipe.ingredients];
-    ingredients.splice(index, 1);
+    const ingredients = recipe.ingredients.filter((_, i) => i !== index);
     setRecipe({ ...recipe, ingredients });
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setPreviewImage(URL.createObjectURL(file));
+      setRecipe({ ...recipe, imageUrl: file });
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -52,7 +63,7 @@ export const CreateRecipe = () => {
           headers: { authorization: cookies.access_token },
         }
       );
-      alert("Recipe Created");
+      alert("Recipe Created Successfully!");
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -60,10 +71,11 @@ export const CreateRecipe = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh", background: "#f1f1f1" }}>
-      <div className="card shadow-lg p-4" style={{ width: "500px", borderRadius: "10px" }}>
-        <h2 className="text-center mb-4">Create Recipe</h2>
+    <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh", background: "#f8f9fa" }}>
+      <div className="card shadow-lg p-4" style={{ width: "500px", borderRadius: "12px", background: "white" }}>
+        <h2 className="text-center mb-4">Create a Delicious Recipe 🍽️</h2>
         <form onSubmit={handleSubmit}>
+          {/* Recipe Name */}
           <div className="form-group mb-3">
             <label htmlFor="name">Recipe Name</label>
             <input
@@ -73,10 +85,12 @@ export const CreateRecipe = () => {
               value={recipe.name}
               onChange={handleChange}
               className="form-control"
+              placeholder="Enter recipe name"
               required
             />
           </div>
 
+          {/* Description */}
           <div className="form-group mb-3">
             <label htmlFor="description">Description</label>
             <textarea
@@ -86,10 +100,12 @@ export const CreateRecipe = () => {
               onChange={handleChange}
               className="form-control"
               rows="3"
+              placeholder="Briefly describe your recipe"
               required
             ></textarea>
           </div>
 
+          {/* Ingredients */}
           <div className="form-group mb-3">
             <label htmlFor="ingredients">Ingredients</label>
             {recipe.ingredients.map((ingredient, index) => (
@@ -100,24 +116,22 @@ export const CreateRecipe = () => {
                   value={ingredient}
                   onChange={(event) => handleIngredientChange(event, index)}
                   className="form-control me-2"
+                  placeholder={`Ingredient ${index + 1}`}
                   required
                 />
                 {index > 0 && (
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveIngredient(index)}
-                    className="btn btn-danger btn-sm"
-                  >
-                    Remove
+                  <button type="button" onClick={() => handleRemoveIngredient(index)} className="btn btn-outline-danger btn-sm">
+                    ❌
                   </button>
                 )}
               </div>
             ))}
-            <button type="button" onClick={handleAddIngredient} className="btn btn-outline-primary btn-sm">
-              Add Ingredient
+            <button type="button" onClick={handleAddIngredient} className="btn btn-outline-primary btn-sm mt-2">
+              ➕ Add Ingredient
             </button>
           </div>
 
+          {/* Instructions */}
           <div className="form-group mb-3">
             <label htmlFor="instructions">Instructions</label>
             <textarea
@@ -127,21 +141,23 @@ export const CreateRecipe = () => {
               onChange={handleChange}
               className="form-control"
               rows="5"
+              placeholder="Step-by-step instructions"
               required
             ></textarea>
           </div>
 
+          {/* Image Upload */}
           <div className="form-group mb-3">
-            <label htmlFor="imageUrl">Recipe Image</label>
-            <input
-              type="file"
-              id="imageUrl"
-              name="imageUrl"
-              onChange={(e) => setRecipe({ ...recipe, imageUrl: e.target.files[0] })}
-              className="form-control"
-            />
+            <label htmlFor="imageUrl">Upload Recipe Image</label>
+            <input type="file" id="imageUrl" name="imageUrl" onChange={handleImageChange} className="form-control" />
+            {previewImage && (
+              <div className="text-center mt-3">
+                <img src={previewImage} alt="Preview" className="img-fluid rounded shadow" style={{ maxHeight: "200px" }} />
+              </div>
+            )}
           </div>
 
+          {/* Cooking Time */}
           <div className="form-group mb-3">
             <label htmlFor="cookingTime">Cooking Time (minutes)</label>
             <input
@@ -151,16 +167,17 @@ export const CreateRecipe = () => {
               value={recipe.cookingTime}
               onChange={handleChange}
               className="form-control"
+              placeholder="Cooking time in minutes"
               required
             />
           </div>
 
-          <button type="submit" className="btn btn-success w-100 mt-3">
-            Create Recipe
+          {/* Submit Button */}
+          <button type="submit" className="btn btn-success w-100 mt-3" style={{ transition: "0.3s" }}>
+            🚀 Create Recipe
           </button>
         </form>
       </div>
     </div>
   );
 };
-
