@@ -13,7 +13,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm py-2">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
       <div className="container">
         {/* Brand Logo / App Name */}
         <Link to="/" className="navbar-brand fw-bold d-flex align-items-center">
@@ -26,7 +26,7 @@ export const Navbar = () => {
           RecipeHub
         </Link>
 
-        {/* Mobile Toggle Button */}
+        {/* Toggle Button for Mobile */}
         <button
           className="navbar-toggler"
           type="button"
