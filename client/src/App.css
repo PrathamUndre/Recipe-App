@@ -246,3 +246,43 @@ button{
     transform: translateY(0);
   }
 }
+
+
+/*home css  */
+/* Card Styling */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Image Zoom Effect */
+.card-img-top {
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-img-top:hover {
+  transform: scale(1.05);
+}
+
+/* Save Button Animation */
+.btn-outline-primary,
+.btn-danger {
+  transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: white;
+  transform: scale(1.05);
+}
+
+.btn-danger:hover {
+  background-color: #dc3545;
+  color: white;
+  transform: scale(1.05);
+}
