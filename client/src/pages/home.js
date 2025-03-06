@@ -32,31 +32,26 @@ export const Home = () => {
     fetchSavedRecipes();
   }, [userID]);
 
-  // ✅ Toggle Save/Unsave Recipe
+  // ✅ Simple Save/Unsave function
   const toggleSaveRecipe = async (recipeID) => {
     try {
       const isSaved = savedRecipes.includes(recipeID);
 
-      if (isSaved) {
-        // 🔴 UNSAVE: Remove from saved recipes
-        const response = await axios.delete(
-          `https://recipe-app-dra0.onrender.com/recipes/unsave/${userID}/${recipeID}`
-        );
-        setSavedRecipes(response.data.savedRecipes);
-      } else {
-        // ✅ SAVE: Add to saved recipes
-        const response = await axios.put("https://recipe-app-dra0.onrender.com/recipes", {
-          recipeID,
-          userID,
-        });
-        setSavedRecipes(response.data.savedRecipes);
-      }
+      const response = isSaved
+        ? await axios.put("https://recipe-app-dra0.onrender.com/recipes/unsave", {
+            recipeID,
+            userID,
+          })
+        : await axios.put("https://recipe-app-dra0.onrender.com/recipes", {
+            recipeID,
+            userID,
+          });
+
+      setSavedRecipes(response.data.savedRecipes); // ✅ Updates UI immediately
     } catch (err) {
       console.error(err);
     }
   };
-
-  const isRecipeSaved = (id) => savedRecipes.includes(id);
 
   return (
     <div className="container py-5">
@@ -79,10 +74,10 @@ export const Home = () => {
 
                 <div className="d-flex justify-content-between align-items-center">
                   <button
-                    className={`btn ${isRecipeSaved(recipe._id) ? "btn-danger" : "btn-outline-primary"} rounded-pill`}
+                    className={`btn ${savedRecipes.includes(recipe._id) ? "btn-danger" : "btn-outline-primary"} rounded-pill`}
                     onClick={() => toggleSaveRecipe(recipe._id)}
                   >
-                    {isRecipeSaved(recipe._id) ? "❌ Unsave" : "❤️ Save"}
+                    {savedRecipes.includes(recipe._id) ? "❌ Unsave" : "❤️ Save"}
                   </button>
                   <a href={`/recipe/${recipe._id}`} className="btn btn-primary rounded-pill">
                     View
