@@ -3,7 +3,7 @@ import axios from "axios";
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 
 export const CreateRecipe = () => {
   const userID = useGetUserID();
