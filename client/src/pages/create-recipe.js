@@ -53,22 +53,51 @@ export const CreateRecipe = () => {
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      await axios.post(
-        "https://recipe-app-dra0.onrender.com/recipes",
-        { ...recipe },
-        {
-          headers: { authorization: cookies.access_token },
-        }
-      );
-      alert("Recipe Created Successfully!");
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     await axios.post(
+  //       "https://recipe-app-dra0.onrender.com/recipes",
+  //       { ...recipe },
+  //       {
+  //         headers: { authorization: cookies.access_token },
+  //       }
+  //     );
+  //     alert("Recipe Created Successfully!");
+  //     navigate("/");
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  const formData = new FormData();
+
+  formData.append("name", recipe.name);
+  formData.append("description", recipe.description);
+  formData.append("ingredients", recipe.ingredients.join(",")); // Convert array to comma-separated string
+  formData.append("instructions", recipe.instructions);
+  formData.append("cookingTime", recipe.cookingTime);
+  formData.append("userOwner", recipe.userOwner);
+
+  if (recipe.imageUrl) {
+    formData.append("imageUrl", recipe.imageUrl); // Append image file
+  }
+
+  try {
+    await axios.post("https://recipe-app-dra0.onrender.com/recipes", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        authorization: cookies.access_token,
+      },
+    });
+
+    alert("Recipe Created Successfully!");
+    navigate("/");
+  } catch (error) {
+    console.error("Error creating recipe:", error);
+  }
+};
 
   return (
     <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh", background: "#f8f9fa" }}>
