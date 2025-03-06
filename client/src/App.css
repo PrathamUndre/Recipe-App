@@ -136,3 +136,37 @@ button{
   border-radius: 5px;
   background-color: aqua;
 }
+
+/* Modern Navbar Styling */
+.custom-navbar {
+  background: linear-gradient(90deg, #ff8c00, #ff4500); /* Gradient Orange-Red */
+  padding: 15px 0;
+}
+
+/* Navbar Links */
+.navbar-nav .nav-link {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white !important;
+  transition: 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffe600 !important; /* Yellow on hover */
+  transform: scale(1.05);
+}
+
+/* Buttons */
+.btn {
+  border-radius: 30px;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-outline-light:hover {
+  background: white;
+  color: black !important;
+}
+
+.btn-danger:hover {
+  background: #ff0000;
+}
