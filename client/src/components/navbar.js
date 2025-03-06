@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
+
 export const Navbar = () => {
   const [cookies, setCookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
@@ -13,16 +14,11 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <nav className="navbar navbar-expand-lg navbar-dark custom-navbar">
       <div className="container">
         {/* Brand Logo / App Name */}
         <Link to="/" className="navbar-brand fw-bold d-flex align-items-center">
-          <img
-            src="https://img.icons8.com/ios/50/ffffff/chef-hat.png"
-            alt="logo"
-            className="me-2"
-            style={{ width: "35px" }}
-          />
+          <img src="https://img.icons8.com/ios/50/ffffff/chef-hat.png" alt="logo" className="me-2" style={{ width: "35px" }} />
           RecipeHub
         </Link>
 
@@ -41,40 +37,27 @@ export const Navbar = () => {
 
         {/* Navbar Links */}
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto text-center">
+          <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link to="/" className="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
-                🏠 Home
-              </Link>
+              <Link to="/" className="nav-link">🏠 Home</Link>
             </li>
             <li className="nav-item">
-              <Link to="/create-recipe" className="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
-                📝 Create Recipe
-              </Link>
+              <Link to="/create-recipe" className="nav-link">📝 Create Recipe</Link>
             </li>
             <li className="nav-item">
-              <Link to="/saved-recipes" className="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
-                ❤️ Saved Recipes
-              </Link>
+              <Link to="/saved-recipes" className="nav-link">❤️ Saved Recipes</Link>
             </li>
 
             {/* Conditional Login/Register or Logout Button */}
-            <li className="nav-item mt-2 mt-lg-0">
+            <li className="nav-item">
               {!cookies.access_token ? (
-                <Link
-                  to="/auth"
-                  className="btn btn-outline-light fw-bold px-4 w-100 w-lg-auto"
-                  data-bs-toggle="collapse"
-                  data-bs-target=".navbar-collapse.show"
-                >
+                <Link to="/auth" className="btn btn-outline-light ms-3 fw-bold px-4">
                   🔑 Login
                 </Link>
               ) : (
                 <button
                   onClick={logout}
-                  className="btn btn-danger fw-bold px-4 w-100 w-lg-auto"
-                  data-bs-toggle="collapse"
-                  data-bs-target=".navbar-collapse.show"
+                  className="btn btn-danger ms-3 fw-bold px-4"
                 >
                   🚪 Logout
                 </button>
@@ -85,4 +68,4 @@ export const Navbar = () => {
       </div>
     </nav>
   );
-};
+}; 
