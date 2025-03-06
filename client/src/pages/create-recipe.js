@@ -17,6 +17,7 @@ export const CreateRecipe = () => {
     userOwner: userID,
   });
   const [previewImage, setPreviewImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -33,11 +34,7 @@ export const CreateRecipe = () => {
   };
 
   const handleAddIngredient = () => {
-    if (recipe.ingredients.length < 20) {
-      setRecipe({ ...recipe, ingredients: [...recipe.ingredients, ""] });
-    } else {
-      alert("You can add up to 20 ingredients only.");
-    }
+    setRecipe({ ...recipe, ingredients: [...recipe.ingredients, ""] });
   };
 
   const handleRemoveIngredient = (index) => {
@@ -45,59 +42,52 @@ export const CreateRecipe = () => {
     setRecipe({ ...recipe, ingredients });
   };
 
+  const handleImageUpload = async (file) => {
+    setLoading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "your_upload_preset"); // Replace with Cloudinary preset
+
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/your_cloud_name/image/upload", // Replace with your Cloudinary cloud name
+        formData
+      );
+      setRecipe({ ...recipe, imageUrl: response.data.secure_url });
+      setPreviewImage(response.data.secure_url);
+    } catch (error) {
+      console.error("Image upload failed:", error);
+    }
+    setLoading(false);
+  };
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       setPreviewImage(URL.createObjectURL(file));
-      setRecipe({ ...recipe, imageUrl: file });
+      handleImageUpload(file); // Uploads image and sets the URL
     }
   };
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     await axios.post(
-  //       "https://recipe-app-dra0.onrender.com/recipes",
-  //       { ...recipe },
-  //       {
-  //         headers: { authorization: cookies.access_token },
-  //       }
-  //     );
-  //     alert("Recipe Created Successfully!");
-  //     navigate("/");
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  const formData = new FormData();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  formData.append("name", recipe.name);
-  formData.append("description", recipe.description);
-  formData.append("ingredients", recipe.ingredients.join(",")); // Convert array to comma-separated string
-  formData.append("instructions", recipe.instructions);
-  formData.append("cookingTime", recipe.cookingTime);
-  formData.append("userOwner", recipe.userOwner);
+    if (!recipe.imageUrl) {
+      alert("Please wait for the image to upload.");
+      return;
+    }
 
-  if (recipe.imageUrl) {
-    formData.append("imageUrl", recipe.imageUrl); // Append image file
-  }
+    try {
+      await axios.post("https://recipe-app-dra0.onrender.com/recipes", recipe, {
+        headers: { authorization: cookies.access_token },
+      });
 
-  try {
-    await axios.post("https://recipe-app-dra0.onrender.com/recipes", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        authorization: cookies.access_token,
-      },
-    });
-
-    alert("Recipe Created Successfully!");
-    navigate("/");
-  } catch (error) {
-    console.error("Error creating recipe:", error);
-  }
-};
+      alert("Recipe Created Successfully!");
+      navigate("/");
+    } catch (error) {
+      console.error("Error creating recipe:", error);
+    }
+  };
 
   return (
     <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh", background: "#f8f9fa" }}>
@@ -179,6 +169,7 @@ const handleSubmit = async (event) => {
           <div className="form-group mb-3">
             <label htmlFor="imageUrl">Upload Recipe Image</label>
             <input type="file" id="imageUrl" name="imageUrl" onChange={handleImageChange} className="form-control" />
+            {loading && <p className="text-center mt-2 text-primary">Uploading image...</p>}
             {previewImage && (
               <div className="text-center mt-3">
                 <img src={previewImage} alt="Preview" className="img-fluid rounded shadow" style={{ maxHeight: "200px" }} />
