@@ -31,7 +31,7 @@ export const Home = () => {
 
     fetchRecipes();
     fetchSavedRecipes();
-  }, []);
+  }, [userID]);
 
   const saveRecipe = async (recipeID) => {
     try {
@@ -48,28 +48,31 @@ export const Home = () => {
   const isRecipeSaved = (id) => savedRecipes.includes(id);
 
   return (
-    <div>
-      <h1>Recipes</h1>
-      <ul>
+    <div className="container py-5">
+      <h1 className="text-center mb-4">Explore Our Recipes</h1>
+      <div className="row row-cols-1 row-cols-md-3 g-4">
         {recipes.map((recipe) => (
-          <li key={recipe._id}>
-            <div>
-              <h2>{recipe.name}</h2>
-              <button
-                onClick={() => saveRecipe(recipe._id)}
-                disabled={isRecipeSaved(recipe._id)}
-              >
-                {isRecipeSaved(recipe._id) ? "Saved" : "Save"}
-              </button>
+          <div key={recipe._id} className="col">
+            <div className="card shadow-sm">
+              <img src={recipe.imageUrl} alt={recipe.name} className="card-img-top" />
+              <div className="card-body">
+                <h5 className="card-title">{recipe.name}</h5>
+                <p className="card-text">{recipe.instructions.substring(0, 100)}...</p>
+                <div className="d-flex justify-content-between align-items-center">
+                  <p className="text-muted">Cooking Time: {recipe.cookingTime} minutes</p>
+                  <button
+                    className={`btn ${isRecipeSaved(recipe._id) ? 'btn-success' : 'btn-primary'} ${isRecipeSaved(recipe._id) ? 'disabled' : ''}`}
+                    onClick={() => saveRecipe(recipe._id)}
+                    disabled={isRecipeSaved(recipe._id)}
+                  >
+                    {isRecipeSaved(recipe._id) ? "Saved" : "Save"}
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="instructions">
-              <p>{recipe.instructions}</p>
-            </div>
-            <img src={recipe.imageUrl} alt={recipe.name} />
-            <p>Cooking Time: {recipe.cookingTime} minutes</p>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
