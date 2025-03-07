@@ -11,8 +11,8 @@ export const Auth = () => {
     <div className="d-flex justify-content-center align-items-center mt-5" >
       <div className="card shadow-lg p-4" style={{ width: "400px" }}>
         <div className="d-flex justify-content-around mb-3">
-          <button className={`btn ${isLogin ? "btn-primary" : "btn-secondary"}`} onClick={() => setIsLogin(true)}>Sign In</button>
-          <button className={`btn ${!isLogin ? "btn-success" : "btn-secondary"}`} onClick={() => setIsLogin(false)}>Sign Up</button>
+          <button className={`btn ${isLogin ? "btn-primary" : "btn-secondary"}`} onClick={() => setIsLogin(true)}>Login</button>
+          <button className={`btn ${!isLogin ? "btn-success" : "btn-secondary"}`} onClick={() => setIsLogin(false)}>Register</button>
         </div>
         {isLogin ? <Login /> : <Register />}
       </div>
