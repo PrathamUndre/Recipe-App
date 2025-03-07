@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
-
 export const Navbar = () => {
   const [cookies, setCookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
@@ -14,11 +13,16 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark custom-navbar">
+    <nav className="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
       <div className="container">
         {/* Brand Logo / App Name */}
         <Link to="/" className="navbar-brand fw-bold d-flex align-items-center">
-          <img src="https://img.icons8.com/ios/50/ffffff/chef-hat.png" alt="logo" className="me-2" style={{ width: "35px" }} />
+          <img
+            src="https://img.icons8.com/ios/50/ffffff/chef-hat.png"
+            alt="logo"
+            className="me-2"
+            style={{ width: "35px" }}
+          />
           RecipeHub
         </Link>
 
@@ -37,7 +41,7 @@ export const Navbar = () => {
 
         {/* Navbar Links */}
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
+          <ul className="navbar-nav ms-auto text-center">
             <li className="nav-item">
               <Link to="/" className="nav-link">🏠 Home</Link>
             </li>
@@ -49,15 +53,15 @@ export const Navbar = () => {
             </li>
 
             {/* Conditional Login/Register or Logout Button */}
-            <li className="nav-item">
+            <li className="nav-item mt-2 mt-lg-0">
               {!cookies.access_token ? (
-                <Link to="/auth" className="btn btn-outline-light ms-3 fw-bold px-4">
+                <Link to="/auth" className="btn btn-outline-light fw-bold px-4 w-100">
                   🔑 Login
                 </Link>
               ) : (
                 <button
                   onClick={logout}
-                  className="btn btn-danger ms-3 fw-bold px-4"
+                  className="btn btn-danger fw-bold px-4 w-100"
                 >
                   🚪 Logout
                 </button>
@@ -68,4 +72,4 @@ export const Navbar = () => {
       </div>
     </nav>
   );
-}; 
+};
