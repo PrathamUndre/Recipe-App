@@ -8,6 +8,7 @@ export const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [savedRecipes, setSavedRecipes] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(""); // 🔹 Search term state
   const userID = useGetUserID();
   const location = useLocation();  /*  from this add this 3 new* for further change it will delete */
   const selectedRecipeID = location.state?.selectedRecipeID || null;
@@ -46,6 +47,18 @@ export const Home = () => {
     }
   }, [recipes, selectedRecipeID]);
   
+  // 🔹 Filter recipes when search term changes
+  useEffect(() => {
+    if (searchTerm.trim() === "") {
+      setFilteredRecipes(recipes); // Reset to all recipes if search is empty
+    } else {
+      const filtered = recipes.filter(recipe =>
+        recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredRecipes(filtered);
+    }
+  }, [searchTerm, recipes]);
+  
   // ✅ Simple Save/Unsave function
   const toggleSaveRecipe = async (recipeID) => {
     try {
@@ -68,6 +81,9 @@ export const Home = () => {
   };
 
   return (
+     {/* 🔹 Pass `setSearchTerm` as `onSearch` prop */}
+      <Navbar onSearch={setSearchTerm} />
+    
     <div className="container py-5">
       <h1 className="text-center mb-4 text-primary">🍽️ Explore Our Recipes</h1>
 
