@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { Navbar } from "../components/Navbar";
+import { Navbar } from "../components/navbar";
 
 export const Home = () => {
   const [recipes, setRecipes] = useState([]);
