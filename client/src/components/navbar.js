@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
-export const Navbar = () => {
+export const Navbar = ({ onSearch }) => {  // 🔹 Accept `onSearch` prop
   const [cookies, setCookies] = useCookies(["access_token"]);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
