@@ -53,6 +53,7 @@ const Login = () => {
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" required />
         </div>
         <button type="submit" className="btn btn-primary w-100">Login</button>
+        <h5>Dont have an account? then Register first </h5>
       </form>
     </div>
   );
@@ -88,6 +89,7 @@ const Register = () => {
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" required />
         </div>
         <button type="submit" className="btn btn-success w-100">Register</button>
+         <h5>alReady have an account! then Login only </h5>
       </form>
     </div>
   );
