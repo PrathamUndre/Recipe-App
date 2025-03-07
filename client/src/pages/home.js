@@ -73,7 +73,7 @@ export const Home = () => {
 
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {recipes.map((recipe) => (
-          <div key={recipe._id} className="col">
+          <div key={recipe._id} ref={(el) => (recipeRefs.current[recipe._id] = el)} className="col">
             <div className="card shadow-sm border-0 rounded-4 overflow-hidden">
               <img
                 src={recipe.imageUrl}
