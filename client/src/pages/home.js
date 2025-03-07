@@ -2,12 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-// import React, { useEffect, useState } from "react";
-// import { useGetUserID } from "../hooks/useGetUserID";
-// import axios from "axios";
+import { Navbar } from "../components/Navbar";
 
 export const Home = () => {
   const [recipes, setRecipes] = useState([]);
+  const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [savedRecipes, setSavedRecipes] = useState([]);
   const userID = useGetUserID();
   const location = useLocation();  /*  from this add this 3 new* for further change it will delete */
@@ -19,6 +18,7 @@ export const Home = () => {
       try {
         const response = await axios.get("https://recipe-app-dra0.onrender.com/recipes");
         setRecipes(response.data);
+        setFilteredRecipes(response.data); // Set initial filtered recipes
       } catch (err) {
         console.error(err);
       }
