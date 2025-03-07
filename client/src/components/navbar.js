@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie";
 
 export const Navbar = () => {
   const [cookies, setCookies] = useCookies(["access_token"]);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   const logout = () => {
@@ -59,6 +60,20 @@ export const Navbar = () => {
             </li>
             <li className="nav-item">
               <Link to="/saved-recipes" className="nav-link" onClick={closeNavbar}>❤️ Saved Recipes</Link>
+            </li>
+
+              {/* Search Bar */}
+            <li className="nav-item mx-2">
+              <input
+                type="text"
+                className="form-control search-bar"
+                placeholder="🔍 Search recipes..."
+                value={searchTerm}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  onSearch(e.target.value); // Pass search input to Home component
+                }}
+              />
             </li>
 
             {/* Conditional Login/Register or Logout Button */}
