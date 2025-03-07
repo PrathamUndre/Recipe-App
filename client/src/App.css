@@ -124,7 +124,7 @@ p {
   display: -webkit-box;
   line-clamp: 5;
   -webkit-line-clamp: 3; /* Limit to 3 lines */
-  -webkit-box-orient: vertical;
+/*   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   max-height: 6em
@@ -135,7 +135,7 @@ button{
   cursor: pointer;
   border-radius: 5px;
   background-color: aqua;
-} */
+} */ */
 
 /* Modern Navbar Styling */
 .custom-navbar {
@@ -170,6 +170,8 @@ button{
 .btn-danger:hover {
   background: #ff0000;
 }
+
+
 /* Recipe Card Styling */
 .recipe-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -204,6 +206,8 @@ button{
   background: #28a745;
   transform: scale(1.05);
 }
+
+
 
 /* Centering and smooth feel */
 .container {
