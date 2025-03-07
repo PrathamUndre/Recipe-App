@@ -81,7 +81,8 @@ export const Home = () => {
   };
 
   return (
-     {/* 🔹 Pass `setSearchTerm` as `onSearch` prop */}
+    <>
+     /* 🔹 Pass `setSearchTerm` as `onSearch` prop */
       <Navbar onSearch={setSearchTerm} />
     
     <div className="container py-5">
@@ -116,5 +117,6 @@ export const Home = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
