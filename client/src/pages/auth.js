@@ -8,7 +8,7 @@ export const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh", background: "#f7f7f7" }}>
+    <div className="d-flex justify-content-center align-items-center" /*style={{ minHeight: "100vh", background: "#f7f7f7" }}*/>
       <div className="card shadow-lg p-4" style={{ width: "400px" }}>
         <div className="d-flex justify-content-around mb-3">
           <button className={`btn ${isLogin ? "btn-primary" : "btn-secondary"}`} onClick={() => setIsLogin(true)}>Sign In</button>
