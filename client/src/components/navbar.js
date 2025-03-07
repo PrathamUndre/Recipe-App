@@ -5,7 +5,6 @@ import { useCookies } from "react-cookie";
 
 export const Navbar = () => {  
   const [cookies, setCookies] = useCookies(["access_token"]);
-  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   const logout = () => {
