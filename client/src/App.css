@@ -1,4 +1,4 @@
-.App {
+/* .App {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -123,7 +123,7 @@ p {
   font-size: 12px;
   display: -webkit-box;
   line-clamp: 5;
-  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -138,8 +138,152 @@ button{
 }
 
 /* Modern Navbar Styling */
-.custom-navbar {
+/* .custom-navbar {
   background: linear-gradient(90deg, #ff8c00, #ff4500); 
+  padding: 15px 0;
+} */
+
+/* Navbar Links */
+/* .navbar-nav .nav-link {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white !important;
+  transition: 0.3s ease-in-out;
+}
+ 
+ .navbar-nav .nav-link:hover {
+  color: #ffe600 !important; 
+  transform: scale(1.05);
+}
+ */
+/* Buttons */
+/* .btn {
+  border-radius: 30px;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-outline-light:hover {
+  background: white;
+  color: black !important;
+}
+
+.btn-danger:hover {
+  background: #ff0000;
+}
+
+ */
+/* Recipe Card Styling */
+/* .recipe-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+} */
+
+/* Image Styling */
+/* .recipe-card img {
+  height: 230px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.recipe-card:hover img {
+  transform: scale(1.05);
+} */
+
+/* Buttons */
+/* .btn-success {
+  border-radius: 25px;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-success:hover {
+  background: #28a745;
+  transform: scale(1.05);
+}
+
+ */
+
+/* Centering and smooth feel */
+/* .container {
+  animation: fadeIn 0.5s ease-in-out;
+}
+ */
+/* Card Styling */
+/* .card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.15);
+} */
+
+/* Button Hover Effect */
+/* .btn-success {
+  border-radius: 25px;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-success:hover {
+  background: #28a745;
+  transform: scale(1.05);
+}
+
+/* Fade-in Animation */
+/* @keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}  */
+ /* General App Styling */
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.custom-navbar {
+  background: linear-gradient(90deg, #ff8c00, #ff4500);
   padding: 15px 0;
 }
 
@@ -150,10 +294,20 @@ button{
   color: white !important;
   transition: 0.3s ease-in-out;
 }
- 
- .navbar-nav .nav-link:hover {
-  color: #ffe600 !important; 
+
+.navbar-nav .nav-link:hover {
+  color: #ffe600 !important;
   transform: scale(1.05);
+}
+
+/* Mobile Navbar Fix */
+.navbar-toggler {
+  border: none;
+  outline: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
 }
 
 /* Buttons */
@@ -171,19 +325,94 @@ button{
   background: #ff0000;
 }
 
-
-/* Recipe Card Styling */
-.recipe-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
+/* Auth Page */
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f2f2;
 }
 
-.recipe-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  width: 90%;
+  max-width: 400px;
 }
 
-/* Image Styling */
+/* Forms */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+/* Recipe Form */
+.create-recipe {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.create-recipe form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Recipe List */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+li {
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Headings */
+h2 {
+  margin-top: 0;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 .recipe-card img {
   height: 230px;
   object-fit: cover;
@@ -196,6 +425,37 @@ button{
   transform: scale(1.05);
 }
 
+/* Paragraph Text */
+p {
+  max-width: 400px;
+  font-size: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 6em;
+}
+
+/* Buttons */
+button {
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: aqua;
+}
+
+/* Recipe Card Styling */
+.recipe-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
 /* Buttons */
 .btn-success {
   border-radius: 25px;
@@ -205,13 +465,6 @@ button{
 .btn-success:hover {
   background: #28a745;
   transform: scale(1.05);
-}
-
-
-
-/* Centering and smooth feel */
-.container {
-  animation: fadeIn 0.5s ease-in-out;
 }
 
 /* Card Styling */
@@ -228,17 +481,6 @@ button{
   box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* Button Hover Effect */
-.btn-success {
-  border-radius: 25px;
-  transition: 0.3s ease-in-out;
-}
-
-.btn-success:hover {
-  background: #28a745;
-  transform: scale(1.05);
-}
-
 /* Fade-in Animation */
 @keyframes fadeIn {
   from {
@@ -250,13 +492,53 @@ button{
     transform: translateY(0);
   }
 }
-.card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+
+.container {
+  animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    height: auto;
+    padding: 10px 0;
+  }
 
+  .navbar-nav {
+    text-align: center;
+  }
 
+  .navbar-nav .nav-item {
+    margin-bottom: 10px;
+  }
+
+  .auth-container,
+  .create-recipe {
+    width: 90%;
+  }
+
+  .recipe-card img {
+    height: 180px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  ul {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  p {
+    font-size: 10px;
+    -webkit-line-clamp: 2;
+  }
+
+  .btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
