@@ -244,10 +244,12 @@ button {
 
 /* Responsive Adjustments */
 /* 768*/
- @media (max-width: 1000px) {
+/* 📌 Responsive Navbar & General Layout Fixes */
+@media (max-width: 1000px) {
   .navbar {
     height: auto;
     padding: 10px 0;
+    overflow-x: hidden; /* ✅ Prevent horizontal scrolling */
   }
 
   .navbar-nav {
@@ -263,29 +265,40 @@ button {
     width: 90%;
   }
 
+  /* ✅ Recipe Card Image Fix */
   .recipe-card img {
     height: 180px;
+    object-fit: cover; /* ✅ Prevents image distortion */
+    width: 100%;
   }
 
+  /* ✅ Button Consistency */
   .btn {
-    font-size: 14px;
+    font-size: clamp(12px, 3vw, 14px); /* ✅ Responsive font size */
     padding: 8px 15px;
   }
 }
 
+/* 📌 Further Adjustments for Extra Small Screens */
 @media (max-width: 480px) {
   ul {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    display: flex; /* ✅ Allows better wrapping */
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
   }
 
   p {
-    font-size: 10px;
+    font-size: 12px; /* ✅ Slightly increased for better readability */
     -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
+  /* ✅ Improve Button Size for Small Screens */
   .btn {
-    font-size: 12px;
-    padding: 6px 12px;
+    font-size: 13px;
+    padding: 7px 14px;
   }
 }
-
