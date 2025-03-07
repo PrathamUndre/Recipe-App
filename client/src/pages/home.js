@@ -74,7 +74,7 @@ export const Home = () => {
 
                 <div className="d-flex justify-content-between align-items-center">
                   <button
-                    className={`btn ${savedRecipes.includes(recipe._id) ? "btn-danger" : "btn-outline-primary"} rounded-pill`}
+                    className={`btn ${savedRecipes.includes(recipe._id) ? "btn-success" : "btn-outline-primary"} rounded-pill`}
                     onClick={() => toggleSaveRecipe(recipe._id)}
                   >
                     {savedRecipes.includes(recipe._id) ? "✅ Saved" : "❤️ Save"}
