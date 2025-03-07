@@ -77,11 +77,8 @@ export const Home = () => {
                     className={`btn ${savedRecipes.includes(recipe._id) ? "btn-danger" : "btn-outline-primary"} rounded-pill`}
                     onClick={() => toggleSaveRecipe(recipe._id)}
                   >
-                    {savedRecipes.includes(recipe._id) ? "❌ Unsave" : "❤️ Save"}
+                    {savedRecipes.includes(recipe._id) ? "✅ Saved" : "❤️ Save"}
                   </button>
-                  <a href={`/recipe/${recipe._id}`} className="btn btn-primary rounded-pill">
-                    View
-                  </a>
                 </div>
               </div>
             </div>
