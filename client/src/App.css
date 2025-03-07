@@ -501,8 +501,9 @@ button {
   animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Responsive Adjustments */
-/* @media (max-width: 768px) {
+Responsive Adjustments */
+/* 768*/
+/* @media (max-width: 1000px) {
   .navbar {
     height: auto;
     padding: 10px 0;
@@ -546,4 +547,4 @@ button {
     padding: 6px 12px;
   }
 }
- */
+
