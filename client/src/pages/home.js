@@ -1,12 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useGetUserID } from "../hooks/useGetUserID";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
+// import React, { useEffect, useState } from "react";
+// import { useGetUserID } from "../hooks/useGetUserID";
+// import axios from "axios";
 
 export const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [savedRecipes, setSavedRecipes] = useState([]);
   const userID = useGetUserID();
-
+  const location = useLocation();  /*  from this add this 3 new* for further change it will delete */
+  const selectedRecipeID = location.state?.selectedRecipeID || null;
+  const recipeRefs = useRef({});
+  
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
@@ -31,7 +38,14 @@ export const Home = () => {
     fetchRecipes();
     fetchSavedRecipes();
   }, [userID]);
-
+  
+ // Scroll to the selected recipe when Home.js loads
+  useEffect(() => {
+    if (selectedRecipeID && recipeRefs.current[selectedRecipeID]) {
+      recipeRefs.current[selectedRecipeID].scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [recipes, selectedRecipeID]);
+  
   // ✅ Simple Save/Unsave function
   const toggleSaveRecipe = async (recipeID) => {
     try {
