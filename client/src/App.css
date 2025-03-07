@@ -144,20 +144,20 @@ button{
 }
 
 /* Navbar Links */
-/* .navbar-nav .nav-link {
+.navbar-nav .nav-link {
   font-size: 1.1rem;
   font-weight: 600;
   color: white !important;
   transition: 0.3s ease-in-out;
 }
- */
-/* .navbar-nav .nav-link:hover {
+ 
+ .navbar-nav .nav-link:hover {
   color: #ffe600 !important; 
   transform: scale(1.05);
-} */
+}
 
 /* Buttons */
-/* .btn {
+.btn {
   border-radius: 30px;
   transition: 0.3s ease-in-out;
 }
@@ -170,7 +170,7 @@ button{
 .btn-danger:hover {
   background: #ff0000;
 }
- */
+
 
 /* Recipe Card Styling */
 .recipe-card {
