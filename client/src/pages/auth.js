@@ -65,7 +65,7 @@ const Register = ({ setIsLogin }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("https://recipe-app-2-ysik.onrender.coms/auth/register", { username, password });
+      await axios.post("https://recipe-app-2-ysik.onrender.com/auth/register", { username, password });
       alert("Registration Completed! Now login.");
       setIsLogin(true); // Automatically switch to login after successful registration
     } catch (error) {
