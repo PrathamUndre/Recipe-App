@@ -7,7 +7,12 @@ import { recipesRouter } from "./routes/recipes.js";
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+   origin: "https://recipe-app-1-q0q3.onrender.com",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+       );
 
 app.use("/auth", userRouter);
 app.use("/recipes", recipesRouter);
