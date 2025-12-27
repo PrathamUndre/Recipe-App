@@ -16,7 +16,7 @@ export const Home = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await axios.get("https://recipe-app-1-q0q3.onrender.com/recipes");
+        const response = await axios.get("https://recipe-app-2-ysik.onrender.com/recipes");
         setRecipes(response.data);
       } catch (err) {
         console.error(err);
@@ -26,7 +26,7 @@ export const Home = () => {
     const fetchSavedRecipes = async () => {
       try {
         const response = await axios.get(
-          `https://recipe-app-1-q0q3.onrender.com/recipes/savedRecipes/ids/${userID}`
+          `https://recipe-app-2-ysik.onrender.com/recipes/savedRecipes/ids/${userID}`
         );
         setSavedRecipes(response.data.savedRecipes);
       } catch (err) {
@@ -62,11 +62,11 @@ export const Home = () => {
       const isSaved = savedRecipes.includes(recipeID);
 
       const response = isSaved
-        ? await axios.put("https://recipe-app-1-q0q3.onrender.com/recipes/unsave", {
+        ? await axios.put("https://recipe-app-2-ysik.onrender.com/recipes/unsave", {
             recipeID,
             userID,
           })
-        : await axios.put("https://recipe-app-1-q0q3.onrender.com/recipes", {
+        : await axios.put("https://recipe-app-2-ysik.onrender.com/recipes", {
             recipeID,
             userID,
           });
