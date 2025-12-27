@@ -29,7 +29,7 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const result = await axios.post("https://recipe-app-1-q0q3.onrender.com/auth/login", { username, password });
+      const result = await axios.post("https://recipe-app-2-ysik.onrender.com/auth/login", { username, password });
       setCookies("access_token", result.data.token);
       window.localStorage.setItem("userID", result.data.userID);
       navigate("/");
@@ -65,7 +65,7 @@ const Register = ({ setIsLogin }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("https://recipe-app-1-q0q3.onrender.com/auth/register", { username, password });
+      await axios.post("https://recipe-app-2-ysik.onrender.coms/auth/register", { username, password });
       alert("Registration Completed! Now login.");
       setIsLogin(true); // Automatically switch to login after successful registration
     } catch (error) {
